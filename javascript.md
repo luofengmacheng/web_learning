@@ -1,8 +1,16 @@
 ## javascript
 
-### 1 遍历表单的所有字段
+### 1 关于网站开发
 
-### 2 innerHTML()和innerText()，obj.html()和obj.text()
+* 用PhpStorm等IDE开发时，不要总是点run运行，可以直接在页面进行刷新。
+
+* 当更改代码时，如果出现与前次结果一样(但是，应该不一样)，可以尝试清空缓存(ctrl + F5)。
+
+* 在进行调试时，尽量使用console.log()，而不用alert()。
+
+### 2 遍历表单的所有字段
+
+### 3 innerHTML()和innerText()，obj.html()和obj.text()
 
 innerHTML()和innerText()是javascript中的方法，用于返回元素的内容。
 obj.text()和obj.html()是jQuery中的方法啊，也是操作元素的内容。其中，innerHTML()与obj.html()相对应，都可以对元素的内容进行操作，而且元素的内容可以包含标签；而innerText()与obj.text()相对应，也可以对元素的内容进行操作，而且元素的内容不能包含标签。也就是说，如果标签的内容只有文本，则innerHTML()与innerText()的返回值一样，但是，如果标签的内容中有标签，则innerHTML()会返回包含标签的所有内容，而innerText()只会返回元素中的文本。
@@ -18,7 +26,7 @@ $("p").text(); // tencent
 
 需要注意的是：如果使用这些方法设置内容时，如果内容中有标签，就必须使用innerHTML()或html()。
 
-### 3 table中的各种标签
+### 4 table中的各种标签
 
 根据表格的组成，可以将表格分为三个部分：表头(表的列名)，表干(表的数据)，表注(表的注释)。
 
@@ -26,18 +34,24 @@ $("p").text(); // tencent
 
 表头：
 
-* <thead></thead> 定义表头
-* <th></th> 定义表头的单元格
+``` html
+<thead></thead> 定义表头
+<th></th> 定义表头的单元格
+```
 
 表干：
 
-* <tbody></tbody> 定义表干
-* <tr></tr> 定义表的一行，表的三部分都要用
-* <td></td> 定义表干的单元格，表干和表注要用
+``` html
+<tbody></tbody> 定义表干
+<tr></tr> 定义表的一行，表的三部分都要用
+<td></td> 定义表干的单元格，表干和表注要用
+```
 
 表注：
 
-* <tfoot></tfoot>
+``` html
+<tfoot></tfoot>
+```
 
 因此，定义一个表格的完整格式就是：
 
@@ -91,3 +105,7 @@ $("p").text(); // tencent
 	</tr>
 </table>
 ```
+
+### 5 json的构造和解析
+
+### 6 元素的事件响应函数的返回值
