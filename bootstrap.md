@@ -97,6 +97,11 @@ bootstrap中提供了分页，但是，其实只是创建了多个页面的页�
 	<option value="20">20</option>
 	<option value="40">40</option>
 </select>
+
+<table>
+	<thead></thead>
+	<tbody></tbody>
+</table>
 ```
 
 页面上使用pagination类创建了一个分页，使用form-control创建了一个单选下拉框，用户可以选择每页显示的记录的数量。
@@ -136,6 +141,34 @@ data_list_pager.find('li .page_link').click(function () {
     return false;
 });
 
+function fill_data_to_table(data) {
+	// 根据返回数据的表头域构造表头
+	var table_th = "<tr>";
+	table_th += "<th>操作</th>";
+	var th_len = data['tb_fields'].length;
+	for(var k = 0; k < th_len; ++k) {
+	table_th += "<th>" + data['tb_fields'][k] + "</th>";
+	}
+	table_th += "</tr>";
+
+	// 根据返回数据的记录数构造表体
+	var table_td = "";
+	var td_len = data['data_len'];
+
+	// 展示第一页
+	for(var i = 0; i < td_len; ++i) {
+		table_td += "<tr>";
+		table_td += "<td><a href='javascript:void(0);' onclick='edit_record(this)'>编辑</a></td>";
+		for(var j = 0; j < th_len; ++j) {
+			table_td += "<td>" + data['tb_data'][i][data['tb_fields'][j]] + "</td>";
+		}
+		table_td += "</tr>";
+	}
+
+	$('thead').html(table_th);
+	$('tbody').html(table_td);
+}
+
 function go_to(clicked_page, per_page) {
 	var data_list_pager = $('#data_list_pager');
 
@@ -149,39 +182,74 @@ function go_to(clicked_page, per_page) {
 	
 	// 根据跳转的页面和每页的记录数计算跳转的页面的记录的偏移量
 	var pgoff = clicked_page * per_page;
-	var tb_data = {'dbname': dbn, 'tbname': tbn, 'page_off': pgoff, 'page_size': pgsize};
+	var tb_data = {'dbname': dbn, 'tbname': tbn, 'page_off': pgoff, 'page_size': pgsize, 'where': where};
 
 	// 通过ajax方法向后台请求数据
 	$.post('index.php/Db_control/show_tb',
 		tb_data,
 		function(data) {
-			// 根据返回数据的表头域构造表头
-			var table_th = "<tr>";
-			table_th += "<th>操作</th>";
-			var th_len = data['tb_fields'].length;
-			for(var k = 0; k < th_len; ++k) {
-				table_th += "<th>" + data['tb_fields'][k] + "</th>";
-			}
-			table_th += "</tr>";
-
-			// 根据返回数据的记录数构造表体
-			var table_td = "";
-			var td_len = data['data_len'];
-
-			// 展示第一页
-			for(var i = 0; i < td_len; ++i) {
-				table_td += "<tr>";
-				table_td += "<td><a href='javascript:void(0);' onclick='edit_record(this)'>编辑</a></td>";
-				for(var j = 0; j < th_len; ++j) {
-					table_td += "<td>" + data['tb_data'][i][data['tb_fields'][j]] + "</td>";
-				}
-				table_td += "</tr>";
-			}
-
-			$('thead').html(table_th);
-			$('tbody').html(table_td);
+			fill_data_to_table(data);
 		},
 		"json"
 	);
 }
+```
+
+### 5 树形结构
+
+#### 5.1 页面代码
+
+``` html
+<div class="tree well">
+	<ul>
+		<li>
+			<span><i class="glyphicon glyphicon-folder-open"></i>msg_board</span>
+			<ul>
+				<li>
+					<span><i class="glyphicon glyphicon-th-list"></i><a href="javascript:void(0);">message</a></span>
+				</li>
+				<li>
+					<span><i class="glyphicon glyphicon-th-list"></i><a href="javascript:void(0);">user</a></span>
+				</li>
+				<li>
+					<span><i class="glyphicon glyphicon-th-list"></i><a href="javascript:void(0);">firewall</a></span>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+```
+
+#### 5.2 js代码
+
+``` javascript
+$(function(){
+	// 选择类为tree的元素，即整棵树，再选择树中所有有直接子孩子ul的li元素，即msg_board的span的父节点li
+	// 为刚选择的所有的li添加类parent_li，它就是树中的可以打开的节点，即非叶节点
+	// 同时，找到刚选择的所有的li的直接子孩子span，并设置title属性为Collapse this brance
+	$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+
+	// 为所有的可以展开的span绑定函数
+	$('.tree li.parent_li > span').on('click', function (e) {
+		// 找到可以展开的span的父节点中类为parent_li的li元素
+		// 然后找到li元素的直接子孩子ul，再找到ul的直接子孩子li
+		var children = $(this).parent('li.parent_li').find(' > ul > li');
+		// 找到孩子中所有状态隐藏的元素
+		if (children.is(":visible")) {
+			// 如果孩子是可见的，就隐藏
+			children.hide('fast');
+			$(this).attr('title', 'Expand this branch');
+		} else {
+			// 如果孩子是隐藏的，就显示
+			children.show('fast');
+			$(this).attr('title', 'Collapse this branch');
+		}
+		e.stopPropagation();
+	});
+	// 将所有的孩子隐藏
+	$('.tree li.parent_li > span').each(function (index, elem) {
+		var children = $(this).parent('li.parent_li').find(' > ul > li');
+		children.hide();
+	})
+});
 ```
