@@ -110,6 +110,8 @@ $("p").text(); // tencent
 
 json是web中用于数据传输的常用格式，关于它的介绍可以参看：[JSON入门指南](http://www.ibm.com/developerworks/cn/web/wa-lo-json/#ibm-pcon)
 
+同时，在编程时，可以在网上[Json.cn](http://json.cn/)测试字符串是否是正确的json字符串。
+
 #### 5.1 json中的数据结构
 
 json中的复合结构分为两种：对象和数组。其中，对象由{ }表示，包含一系列的键值对，键只能是字符串。数组由[]表示，包含多个元素，每个元素之间用,隔开。
