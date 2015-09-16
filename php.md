@@ -68,3 +68,5 @@ curl -G -d "name=luo&age=10" http://127.0.0.1/website/test_func
 ```
 
 这就采用GET方式传参，curl在发送请求时，会将参数添加到请求的URL后面，再发起http请求。
+
+需要注意的是，参数类型不一定是上面的类型，例如，如果test_func()操作的是$_POST数组，就必须是以上的格式，如果test_func()是其它类型，就可以传送它可以处理的类型。
