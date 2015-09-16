@@ -39,5 +39,32 @@ Session: Configured save path '' is not a directory, doesn't exist or cannot be 
 
 解决方案是：为config.php中的$config['sess_save_path']设置路径，而且是绝对路径，例如$config['sess_save_path'] = '/usr/local/ci_sessions'，然后创建该目录，并修改权限为可写。
 
+### 3 关于curl
 
+curl是一个常用的发起请求的工具，也有对应的libcurl供开发人员使用。
 
+比较常用的是使用curl发起http请求，模拟客户端的请求，从而测试服务器是否能够正常提供服务，也可以测试CGI是否可以正常处理请求。
+
+如下所示，curl请求百度主页的例子。
+
+``` SHELL
+curl http://www.baidu.com
+```
+
+但是，在测试过程中，经常需要给服务器传送参数，http中只有两种传参方式：POST和GET。
+
+curl的-d选项可以用于发送数据，而且curl默认的传参方式是POST，也就是说，下面的方式采用POST方式传参：
+
+``` SHELL
+curl -d "name=luo&age=10" http://127.0.0.1/website/test_func
+```
+
+因此，test_func就可以直接处理$_POST中的数据。
+
+如果要使用GET方式，需要加-G选项：
+
+``` SHELL
+curl -G -d "name=luo&age=10" http://127.0.0.1/website/test_func
+```
+
+这就采用GET方式传参，curl在发送请求时，会将参数添加到请求的URL后面，再发起http请求。
