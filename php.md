@@ -70,3 +70,11 @@ curl -G -d "name=luo&age=10" http://127.0.0.1/website/test_func
 这就采用GET方式传参，curl在发送请求时，会将参数添加到请求的URL后面，再发起http请求。
 
 需要注意的是，参数类型不一定是上面的类型，例如，如果test_func()操作的是$_POST数组，就必须是以上的格式，如果test_func()操作的是其它类型(例如json)，就可以传送它可以处理的类型。
+
+### 4 部署CI网站
+
+使用CI开发网站后，需要将网站部署到服务器上，在进行部署时，需要注意以下问题：
+
+* 修改base_url。将config/config.php中的base_url修改为网站的根目录，例如：$config['base_url'] = 'http://localhost/db'
+* 数据库授权。当网站使用数据库时，需要对部署服务器进行授权
+* 修改session目录。当session使用文件存储时，需要修改session的存储路径：$config['sess_save_path'] = '/usr/local/ci_sessions';而且，路径必须是绝对路径，而且程序可以对该目录有写权限
