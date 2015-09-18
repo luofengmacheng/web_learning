@@ -123,9 +123,7 @@ json是一种常用的数据交换的格式，只要通信的双方都能够理�
 * 在jQuery的ajax方法中，有个参数规定预期的服务器响应的数据类型，常用的就是"json"。
 * 服务器获取前台的数据之后，进行一些逻辑处理，会返回数据，在php中，可以使用json_encode()将返回给客户端的数据转换成json数据。
 
-* javascript。在jQuery的ajax方法中，有个参数规定预期的服务器响应的数据类型，常用的就是"json"。在javascript中有JSON对象，它有两个方法stringify和parse，分别用于生成和解析json。
+* javascript。在jQuery的ajax方法中，有个参数规定预期的服务器响应的数据类型，常用的就是"json"。在javascript中也可以使用JSON解析器，它只能处理json数据，因此，可以防止其它恶意的代码，它有两个方法stringify和parse，分别用于生成和解析json字符串。当构造了一个json对象，要进行传输时，需要转换成字符串，可以使用JSON.stringify()。当接收到json字符串，要进行解析时，需要转换成json对象，可以使用JSON.parse()。
 * php。php中也有两个方法处理json：json_encode()和json_decode()，分别用于生成和解析json。
 
 因此，只要前端的js使用JSON.*，后端使用json_*，前台和后台就可以方便的进行数据交互。
-
-### 6 元素的事件响应函数的返回值
