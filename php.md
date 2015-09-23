@@ -27,17 +27,11 @@ $this->db->where($array);
 
 #### 2.3 CI的部署问题
 
-将CI部署到apache服务器上时，需要注意以下问题：
+使用CI开发网站后，需要将网站部署到服务器上，在进行部署时，需要注意以下问题：
 
-* 注意修改config.php中的base_url
-* 当网站需要连接数据库时，注意修改database.php中的配置信息
-* 进行部署时，可能会遇到这个问题：
-
-```
-Session: Configured save path '' is not a directory, doesn't exist or cannot be created.
-```
-
-解决方案是：为config.php中的$config['sess_save_path']设置路径，而且是绝对路径，例如$config['sess_save_path'] = '/usr/local/ci_sessions'，然后创建该目录，并修改权限为可写。
+* 修改base_url。将config/config.php中的base_url修改为网站的根目录，例如：$config['base_url'] = 'http://localhost/db'
+* 数据库授权。当网站使用数据库时，需要对部署服务器进行授权
+* 修改session目录。当session使用文件存储时，需要修改session的存储路径：$config['sess_save_path'] = '/usr/local/ci_sessions';而且，路径必须是绝对路径，而且程序可以对该目录有写权限
 
 ### 3 关于curl
 
@@ -71,10 +65,4 @@ curl -G -d "name=luo&age=10" http://127.0.0.1/website/test_func
 
 需要注意的是，参数类型不一定是上面的类型，例如，如果test_func()操作的是$_POST数组，就必须是以上的格式，如果test_func()操作的是其它类型(例如json)，就可以传送它可以处理的类型。
 
-### 4 部署CI网站
-
-使用CI开发网站后，需要将网站部署到服务器上，在进行部署时，需要注意以下问题：
-
-* 修改base_url。将config/config.php中的base_url修改为网站的根目录，例如：$config['base_url'] = 'http://localhost/db'
-* 数据库授权。当网站使用数据库时，需要对部署服务器进行授权
-* 修改session目录。当session使用文件存储时，需要修改session的存储路径：$config['sess_save_path'] = '/usr/local/ci_sessions';而且，路径必须是绝对路径，而且程序可以对该目录有写权限
+### 4 PHP中的对象与数组 VS javascript中的对象与数组

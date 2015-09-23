@@ -127,3 +127,43 @@ json是一种常用的数据交换的格式，只要通信的双方都能够理�
 * php。php中也有两个方法处理json：json_encode()和json_decode()，分别用于生成和解析json。
 
 因此，只要前端的js使用JSON.*，后端使用json_*，前台和后台就可以方便的进行数据交互。
+
+### 6 关于错误SyntaxError: Unexpected token ILLEGAL
+
+进行web开发时，遇到了SyntaxError: Unexpected token ILLEGAL错误，开始以为错误是由错误的token码造成的，然后在google中搜索，发现当整数直接调用toString方法时会出现该错误，后来在浏览器的console中错误提示的最后面看到是由于jquery.sparkline.js造成的，点开该文件，发现错误定位在最开始的注释那里：
+
+``` javascript
+/**
+*
+* jquery.sparkline.js
+```
+
+于是，将最开始的两个*删除一个，再运行就好了，不过，还是不知道是为什么。
+
+### 7 统一关闭console.log()
+
+在网站调试阶段，会大量使用console.log()打印语句将信息打印到浏览器的调试窗口中，但是，在网站上线后，就需要关闭所有的console.log()。
+
+* 方案一：在js文件开头加上 console.log = function() { }
+* 方案二：
+
+写一个统一的函数：
+
+``` javascript
+(function (original) {
+    console.enableLogging = function () {
+        console.log = original;
+    };
+    console.disableLogging = function () {
+        console.log = function () {};
+    };
+})(console.log);
+```
+
+在使用时，可以调用enableLogging()和disableLoggin()打开和关闭console.log()：
+
+``` javascript
+console.enableLogging();
+
+console.disableLogging();
+```
