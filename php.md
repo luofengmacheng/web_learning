@@ -33,6 +33,18 @@ $this->db->where($array);
 * 数据库授权。当网站使用数据库时，需要对部署服务器进行授权
 * 修改session目录。当session使用文件存储时，需要修改session的存储路径：$config['sess_save_path'] = '/usr/local/ci_sessions';而且，路径必须是绝对路径，而且程序可以对该目录有写权限
 
+#### 2.4 CI中的MVC各自负责什么
+
+MVC是CI的一大特点，那么，哪些内容该写到M(Model)里面呢？哪些内容又该写到V(View)里面呢？而哪些内容又该写到C(Controller)里面呢？
+
+原则(1)：MVC只负责业务，只有跟业务相关的内容才写到MVC中。
+
+原则(2)：Controller只负责请求的转发：通过input获取参数中的操作类型，然后根据操作类型进行操作的转发。将一个页面的操作封装到一个Controller中。
+
+原则(3)：Model是模型，但是实际编码时可以理解为模块。
+
+原则(4)：基本的功能函数封装到library(面向对象)或者helper(面向过程)。
+
 ### 3 关于curl
 
 curl是一个常用的发起请求的工具，也有对应的libcurl供开发人员使用。
