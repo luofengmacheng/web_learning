@@ -77,4 +77,61 @@ curl -G -d "name=luo&age=10" http://127.0.0.1/website/test_func
 
 需要注意的是，参数类型不一定是上面的类型，例如，如果test_func()操作的是$_POST数组，就必须是以上的格式，如果test_func()操作的是其它类型(例如json)，就可以传送它可以处理的类型。
 
-### 4 PHP中的对象与数组 VS javascript中的对象与数组
+### 4 PHP中的对象与数组 VS javascript中的对象与数组(对象与数组都是针对json而言的)
+
+#### 4.1 PHP中的对象与数组
+
+PHP中array()既可以是键值对也可以是数组，或者说，数组也是一种特殊的键值对形式，但是键值对和数组转换成json却不是一样的。
+
+``` php
+$arr = array();
+$obj = 5;
+array_push($arr, $obj); // 等同于$arr[] = $obj;
+$obj = 6;
+array_push($arr, $obj);
+echo json_encode($arr);
+```
+
+转换成的json就是：
+
+```
+[5, 6]
+```
+
+如果采用键值对形式，则有：
+
+``` php
+$arr = array('name' => 'luofeng', 'city' => 'shenzhen');
+$arr['address'] = 'fun2';
+echo json_encode($arr);
+```
+
+转换成的json就是：
+
+```
+{"name": "luofeng", "city": "shenzhen", "address": "fun2"}
+```
+
+#### 4.2 javascript中的对象与数组
+
+javascript中的json形式有两种，一种是json对象，另一种是json字符串。
+
+例如：
+
+``` javascript
+var json_obj = [ ];
+json_obj.push({"name": "luofeng", "city": "shenzhen"});
+```
+
+那么，json_obj就是个json对象：
+
+```
+[{"name": "luofeng", "city": "shenzhen"}]
+```
+
+以上的方式是构造一个json对象，但是，许多函数在处理时，都是采用json字符串处理的，这时，就需要将json对象转换成json字符串。
+
+``` javascript
+// 将json_obj对象转换成json字符串
+var json_str = JSON.stringify(json_obj);
+```
