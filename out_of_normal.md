@@ -73,3 +73,9 @@ CSS代码如下，为了看得更清楚，加一个padding
 
 总结：脱离文档流，也就是将元素从普通的布局排版中拿走，其他盒子在定位的时候，会当做脱离文档流的元素不存在而进行定位。需要注意的是，使用float脱离文档流时，其他盒子会无视这个元素，但其他盒子内的文本依然会为这个元素让出位置，环绕在周围。而对于使用absolute 
 positioning脱离文档流的元素，其他盒子与其他盒子内的文本都会无视它。
+
+最后，个人总结下CSS中几个跟布局有关的属性：
+
+* display: block、inline、inline-block。其中block是垂直布局，inline和inline-block是水平布局，inline与inline-block的区别是，inline元素不能设置宽高等属性，而inline-block可以设置宽高等属性。
+
+* float与inline-block类似，都用来进行水平布局，它们的主要区别是，float使得元素脱离文档流，而inline-block不会使元素脱离文档流，因此，如果需要文字环绕容器，则选择float，如果需要垂直对齐和水平排列时，则需要使用inline-block。
