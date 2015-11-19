@@ -50,7 +50,7 @@
 
 * :first-child和last-child，选择属于父元素的第一个孩子的元素集合。例如，选择将div作为第一个孩子的所有元素：$('div: first-child')
 * :only-child，选择属于父元素的唯一子元素的元素集合
-* nth-child(i)，选择属于父元素的第i个子元素的元素集合
+* :nth-child(i)，选择属于父元素的第i个子元素的元素集合
 
 ### 6 表单对象选择器
 
