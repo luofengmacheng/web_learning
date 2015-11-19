@@ -9,3 +9,5 @@
 4 [Bootstrap](https://github.com/luofengmacheng/web_learning/blob/master/bootstrap.md)
 
 5 [CSS中元素脱离文档流的问题](https://github.com/luofengmacheng/web_learning/blob/master/out_of_normal.md)
+
+6 [jQuery学习笔记](https://github.com/luofengmacheng/web_learning/blob/master/jQuery/README.md)

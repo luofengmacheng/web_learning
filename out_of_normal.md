@@ -61,7 +61,9 @@ CSS代码如下，为了看得更清楚，加一个padding
 
 ![](https://github.com/luofengmacheng/web_learning/blob/master/pics/pic8.jpg)
 
-为什么能插呢？因为蓝色div被旁边的盒子无视了呀~第三种情况：absolute positioning。删掉float: left，加上postion: absolute。和float一样的是，旁边的盒子无视了蓝色div的存在，也是顶着左边边框定位。但是~ 文本也无视了蓝色div的存在，顶着左边边框定位！
+为什么能插呢？因为蓝色div被旁边的盒子无视了呀~
+
+第三种情况：absolute positioning。删掉float: left，加上postion: absolute。和float一样的是，旁边的盒子无视了蓝色div的存在，也是顶着左边边框定位。但是~ 文本也无视了蓝色div的存在，顶着左边边框定位！
 
 ![](https://github.com/luofengmacheng/web_learning/blob/master/pics/pic9.jpg)
 
