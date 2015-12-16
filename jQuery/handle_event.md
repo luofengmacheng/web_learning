@@ -94,7 +94,7 @@ DOM树中的元素是有层次关系的，当下层的元素捕获一个事件�
 
 ###第三张练习
 
-1 在双击章标题(<h3 class="chapter-title">)时，切换章文本的可见性
+1 在双击章标题(`<h3 class="chapter-title">`)时，切换章文本的可见性
 
 首先，需要捕获该事件：`$('.chapter-title').dblclick()`
 
