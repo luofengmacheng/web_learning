@@ -92,6 +92,59 @@ DOM树中的元素是有层次关系的，当下层的元素捕获一个事件�
 
 注意：上面提到的return false;方法可以阻止事件冒泡，同时也能阻止默认操作。
 
-参考文档：
+###第三张练习
+
+1 在双击章标题(<h3 class="chapter-title">)时，切换章文本的可见性
+
+首先，需要捕获该事件：`$('.chapter-title').dblclick()`
+
+其次，需要获取章文本，对于书上的代码而言，文本就是章标题的兄弟节点，因此，可以用`$('chapter-title').siblings()`
+
+最后，就是如何切换章文本的可见性，一种想法是，设置章文本的display属性在none和block之间切换:
+
+```jQuery
+$('.chapter-title').dblclick(function(event) {
+	var siblings = $(this).siblings();
+	if(siblings.css('display') == 'block') {
+	    siblings.css('display', 'none');
+	}
+	else {
+	    siblings.css('display', 'block');
+	}
+});
+```
+
+另一种方法是利用jQuery提供的toggle函数：
+
+```jQuery
+$('.chapter-title').dblclick(function(event) {
+	$(this).siblings().toggle();
+});
+```
+
+2 使用.mousedown()和.mouseup()跟踪页面中的鼠标事件。如果鼠标按键在按下它的地方之上被释放，则为所有段落添加hidden类。如果是在按下它的地方之下被释放的，删除所有段落的hidden类。
+
+这里面有个判断条件，要知道这个判断，需要知道鼠标按键和释放的位置。因此，想法是，在鼠标按下时，保存鼠标按键的位置，在鼠标释放时，再获取鼠标的位置，与之前保存的位置进行比较即可。
+
+```jQuery
+var y;
+
+$(document).mousedown(function(event) {
+	y = event.pageY;
+});
+
+$(document).mouseup(function(event) {
+	var now_y = event.pageY;
+
+	if(now_y > y) {
+		$('p').removeClass('hidden');
+	}
+	else if(now_y < y){
+		$('p').addClass('hidden');
+	}
+});
+```
+
+###参考文档：
 
 1 [jQuery的.bind()、.live()和.delegate()之间的区别](http://article.yeeyan.org/view/213582/179910)
