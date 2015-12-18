@@ -4,7 +4,7 @@
 
 2 [PHP](https://github.com/luofengmacheng/web_learning/blob/master/php.md)
 
-3 [javascript](https://github.com/luofengmacheng/web_learning/blob/master/javascript.md)
+3 [javascript](https://github.com/luofengmacheng/web_learning/blob/master/javascript/README.md)
 
 4 [Bootstrap](https://github.com/luofengmacheng/web_learning/blob/master/bootstrap.md)
 
