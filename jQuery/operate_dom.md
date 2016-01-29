@@ -25,10 +25,14 @@ $(selector).attr(
 * 包装元素。用一个元素包含另外一个元素，主要是要搞清楚：谁包含谁？
 
 ```
-$(selector)获取被包装的元素，参数就是包含的元素：$('span').wrap('<li></li>')，span选择了所有的span标签，用li标签包含每个span标签。
+$(selector)获取被包装的元素，参数就是包含的元素：$('span').wrap('<li></li>')，span选择了所有的span标签，
+用li标签包含每个span标签。
 $('span').wrapAll('<li></li>')，将所有选择的span标签作为一个整体，用li标签包含所有的span标签。
 $('span').wrapInner('<li></li>')，选择所有的span标签，用li标签包含每个span标签的内容。
-需要注意的是：这3个函数都返回原始的元素集合，而不是进行操作后的集合，因此，进行链式操作时，会出现意想不到的情况。 例如：$('span').wrap('<li></li>').wrapAll('<ol></ol>')，首先选择所有的span标签，然后用li标签包含每个span标签，而由于wrap()的返回值是原始的元素集合，因此wrap()的返回值依然是所有的span标签，再调用wrapAll()后，用ol标签包含所有的span标签，结果就会变成：
+需要注意的是：这3个函数都返回原始的元素集合，而不是进行操作后的集合，因此，进行链式操作时，
+会出现意想不到的情况。 例如：$('span').wrap('<li></li>').wrapAll('<ol></ol>')，首先选择所有的span标签，
+然后用li标签包含每个span标签，而由于wrap()的返回值是原始的元素集合，因此wrap()的返回值依然是所有的span标签，
+再调用wrapAll()后，用ol标签包含所有的span标签，结果就会变成：
 <ol>
 	<li><span></span><span></span><span></span></li>
 </ol>
@@ -46,7 +50,8 @@ prepend: $(selector).after(element)，将element插入到selector选择的元素
 append: $(selector).append(element)，将element插入到selector选择的元素的里面的后面。
 类似地：
 1 插入的目的必须是个选择器，而不能是个新创建的元素。
-2 返回值依然是$(selector)，而不是进行插入后的元素，因此，插入到外面的方法(before和after)选择的元素还是之前的元素，而插入到里面的方法(prepend和append)还是选择的是之前的元素，但element已经插入到了里面。
+2 返回值依然是$(selector)，而不是进行插入后的元素，因此，插入到外面的方法(before和after)选择的元素还是之前的元素，
+而插入到里面的方法(prepend和append)还是选择的是之前的元素，但element已经插入到了里面。
 ```
 
 * 复制元素。
