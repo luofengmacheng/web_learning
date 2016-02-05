@@ -86,6 +86,26 @@ $('#f-author').click(function() {
 
 5 为正文中的每个段落添加一个inhabitants类，但不能调用.addClass()方法，确保不影响现有的类。
 
-```javascript
+方法1：
 
+```javascript
+var element = document.getElementsByTagName('p');
+if(element.className == '') {
+	element.className = 'inhabitants';
+}
+else {
+	element.className += ' inhabitants';
+}
+```
+
+方法2：
+
+```javascript
+var class_attr = $('p').attr('className');
+if(class_attr == '') {
+	$('p').attr('className', 'inhabitants');
+}
+else {
+	$('p').attr('className', class_attr + ' inhabitants');
+}
 ```
