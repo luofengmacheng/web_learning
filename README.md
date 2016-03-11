@@ -12,4 +12,6 @@
 
 6 [jQuery学习笔记](https://github.com/luofengmacheng/web_learning/blob/master/jQuery/README.md)
 
-7 [熟悉cookie和session](https://github.com/luofengmacheng/web_learning/blob/master/learn_cookie_session.md)
+7 [PHP学习笔记](https://github.com/luofengmacheng/web_learning/blob/master/php/README.md)
+
+8 [熟悉cookie和session](https://github.com/luofengmacheng/web_learning/blob/master/learn_cookie_session.md)
