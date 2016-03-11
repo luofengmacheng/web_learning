@@ -65,6 +65,66 @@
 * x 忽略非转义空白
 * n 不捕获未命名的组
 
+### 9 PHP中处理正则表达式
+
+#### 9.1 preg_grep
+
+preg_grep($pattern, $input[, $flag])
+
+* $pattern是正则表达式，$input是数组。
+* 对$input数组中的每个元素使用$pattern进行匹配，如果$flag=0，则输出$input中匹配的元素构成的数组。
+* 如果$flag=PREG_GREP_INVERT,则输出$input中不匹配的元素构成的数组。
+
+#### 9.2 preg_match
+
+preg_match($pattern, $subject[, $match, $flag, $offset])
+
+* $pattern是正则表达式，$subject是字符串。
+* 用$pattern匹配$subject，将匹配的字符串保存到$match[0]中，而$match[1]保存匹配的第一个子组，$match[2]保存匹配的第二个子组，以此类推。
+* 如果$flag=PREG_OFFSET_CAPTURE时，则$match[0]是一个由匹配的字符串和匹配的偏移量组成的数组。
+* $offset指定开始匹配的位置。
+* 返回成功匹配的次数，只有0或者1。
+
+#### 9.3 preg_match_all
+
+preg_match_all($pattern, $subject[, $match, $flag, $offset])
+
+preg_match_all()与preg_match()类似，但是，有两点不同：
+
+* preg_match()匹配成功一次后，就结束了。而preg_match_all()会一直匹配到末尾。
+* $flag有多个不同的值。
+
+#### 9.4 preg_replace
+
+preg_replace($pattern, $replacement, $subject[, $limit, $count])
+
+* $pattern是正则表达式，可以是字符串或者字符串数组，当然，$replace也是字符串或者字符串数组，正常情况下与$pattern一一对应，如果$pattern个数比$replacement多，剩下的就用空字符串替换。
+* $subject是要替换的字符串或者字符串数组，如果是字符串数组，就依次遍历它的字符串，则返回值也是替换后的数组。
+* $limit是每个模式在每个$subject上替换的最大次数。默认是无限大。
+* $count，如果指定，则是最后完成的替换的次数。
+
+#### 9.5 preg_filter
+
+preg_filter($pattern, $replacement, $subject[, $limit, $count])
+
+与preg_replace类似，只是preg_filter只返回匹配的元素替换的结果。
+
+#### 9.6 preg_split
+
+preg_split($pattern, $subject[, $limit, $flag])
+
+使用$pattern正则表达式匹配的字符串作为分隔符分割$subject。
+
+#### 9.7 preg_quote
+
+preg_quote($str[, $delimiter])
+
+$str是一个正则表达式，对它进行转义。
+
+#### 9.8 preg_last_error
+
+preg_last_error()返回最后一次preg_*函数执行出错的错误代码。
+
 参考文档：
 
 1 [正则表达式30分钟入门教程](http://deerchao.net/tutorials/regex/regex.htm)
