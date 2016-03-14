@@ -14,4 +14,4 @@
 
 7 [PHP学习笔记](https://github.com/luofengmacheng/web_learning/blob/master/php/README.md)
 
-8 [熟悉cookie和session](https://github.com/luofengmacheng/web_learning/blob/master/learn_cookie_session.md)
+8 [Sublime配置](https://github.com/luofengmacheng/web_learning/blob/master/sublime_config.md)
