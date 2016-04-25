@@ -15,3 +15,5 @@
 7 [PHP学习笔记](https://github.com/luofengmacheng/web_learning/blob/master/php/README.md)
 
 8 [Sublime配置](https://github.com/luofengmacheng/web_learning/blob/master/sublime_config.md)
+
+9 [XML解析(Python)](https://github.com/luofengmacheng/web_learning/blob/master/xml_parser.md)
