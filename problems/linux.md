@@ -24,8 +24,11 @@ matched_text
 xargs只是依次用后面的命令处理输入的参数，因此，这种结果应该是grep本身产生的。通过对grep的帮助文档的查看，找到了对应的说明：
 
 > -H, --with-filename
+
 > Print the file name for each match. This is the default when there is more than one file to search
+
 > -h, --no-filename
+
 > Suppress the prefixing of file names on output. This is the default when there is only one file (or only standard input) to search
 
 grep的默认行为是：当操作的文件只有一个时，结果中不包含文件名；当操作的文件不止一个，对每个匹配添加文件名。
@@ -52,7 +55,12 @@ grep的默认行为是：当操作的文件只有一个时，结果中不包含�
 
 发现让进程停止的命令是`kill -TERM $pid`，而我们常用的进程停止命令是`kill -9 $pid`，TERM与9是什么关系呢？
 
+通过查阅发现：
 
+* -9表示-KILL，强制杀死进程。
+* -TERM，给进程发送停止信号，并准备回收进程的结束状态，但是，进程是否停止，什么时候停止是无法预知的。
+
+因此，-9是比较粗暴的停止进程的方式，-TERM比较温和，但是，如果用-TERM停止进程，需要为进程的停止时间设置一个上限，否则，进程的停止时间是无法预知的，会造成一些无法估计的错误。
 
 ---
 
