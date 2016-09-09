@@ -6,4 +6,6 @@
 
 #### 3 [Python](https://github.com/luofengmacheng/web_learning/blob/master/problems/python.md)
 
-#### 4 [其它](https://github.com/luofengmacheng/web_learning/blob/master/problems/others.md)
+#### 4 [工作中的开发心得](https://github.com/luofengmacheng/web_learning/blob/master/problems/think.md)
+
+#### 5 [其它](https://github.com/luofengmacheng/web_learning/blob/master/problems/others.md)
