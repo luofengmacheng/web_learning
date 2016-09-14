@@ -75,3 +75,25 @@ grep的默认行为是：当操作的文件只有一个时，结果中不包含�
 查看了grep返回码表示的含义：0表示结果不为空，1表示结果为空，2表示出错。因此，当执行grep没有结果时，grep返回的状态码是1。
 
 再看xargs的状态码：当后面执行的命令的状态码是1-125时，返回123。
+
+### 2016年9月14日
+
+#### 4 变量的二次替换(eval)
+
+文件中包含的内容是`hello $name`(文件名是a.txt)，shell脚本的内容如下：
+
+```shell
+#!/bin/bash
+name=world
+
+while read line
+do
+    echo $line
+done < a.txt
+```
+
+脚本的输出是`hello $name`。但是，由于在脚本中设置了变量的值，因此，希望输出的内容是`hello world`。
+
+这时候，就该eval派上用场了。`eval command`会先对command进行一次扫描，将其中的变量进行替换，然后再执行命令。这里，将`echo $line`改为`eval echo $line`就可以实现想要的功能。在执行时，会先将`echo $line`中的line替换为内容，即变成`echo hello $name`，然后再执行时，就会将name变量替换成实际的值了。
+
+另外，在读取时，应该将line的赋值理解为单引号赋值：`line='hello $name'`。如果理解成双引号赋值，那么line变量的值就已经是替换过的。因此，这里要理解为单引号赋值。
