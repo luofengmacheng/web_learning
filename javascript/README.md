@@ -4,6 +4,8 @@
 
 2 [闭包](https://github.com/luofengmacheng/web_learning/blob/master/javascript/closure.md)
 
-2 [prototype原型链](https://github.com/luofengmacheng/web_learning/blob/master/javascript/prototype.md)
+3 [prototype原型链](https://github.com/luofengmacheng/web_learning/blob/master/javascript/prototype.md)
 
-3 [跨域访问问题](https://github.com/luofengmacheng/web_learning/blob/master/javascript/cors.md)
+4 [跨域访问问题](https://github.com/luofengmacheng/web_learning/blob/master/javascript/cors.md)
+
+5 [Promise总结](https://github.com/luofengmacheng/web_learning/blob/master/javascript/promise.md)
