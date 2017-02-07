@@ -21,3 +21,5 @@
 10 [正向代理和反向代理](https://github.com/luofengmacheng/web_learning/blob/master/proxy_server.md)
 
 11 [cookie和session](https://github.com/luofengmacheng/web_learning/blob/master/cookie_session.md)
+
+12 [nginx、php、mysql部署指南](https://github.com/luofengmacheng/web_learning/blob/master/nginx_php_mysql.md)
